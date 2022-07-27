@@ -3,6 +3,7 @@ package com.oft.securitydemo.admin;
 import com.oft.securitydemo.admin.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,13 +28,21 @@ public class AdminSecurityConfig {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider1(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService());
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
 
     @Bean
    public SecurityFilterChain filterChain1(HttpSecurity http) throws Exception {
 
+        http.authenticationProvider(authenticationProvider1());
         http.authorizeRequests().antMatchers("/").permitAll();
 
-        http.antMatcher("/admin/**").authorizeRequests().anyRequest().hasAuthority("ADMIN")
+        http.antMatcher("/admin/**").authorizeRequests().anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/admin/login")
