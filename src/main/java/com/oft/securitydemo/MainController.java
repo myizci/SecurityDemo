@@ -22,10 +22,10 @@ public class MainController {
 
     }
 
-    @GetMapping("/user/login")
-    public String viewUserLoginPage(){
+    @GetMapping("/customer/login")
+    public String viewCustomerLoginPage(){
 
-        return "user/user_login";
+        return "customer/customer_login";
 
     }
 
@@ -35,10 +35,10 @@ public class MainController {
         return "admin/admin_home";
     }
 
-    @GetMapping("/user/home")
-    public String viewUserHomePage(){
+    @GetMapping("/customer/home")
+    public String viewCustomerHomePage(){
 
-        return "user/user_home";
+        return "customer/customer_home";
 
     }
 }

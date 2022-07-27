@@ -1,5 +1,7 @@
 package com.oft.securitydemo;
 
+import com.oft.securitydemo.admin.User;
+import com.oft.securitydemo.admin.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +18,11 @@ public class DatabaseLoader {
     @Bean
     public CommandLineRunner initializeDatabase(){
         return args -> {
-            User user1= new User("admin@oft.net", "admin123",Role.ADMIN);
-            User user2= new User("admin2@oft.net", "admin123",Role.ADMIN);
-            User user3= new User("user1@oft.net", "user123",Role.USER);
-            User user4= new User("user2@oft.net", "user123",Role.USER);
+            User user1= new User("admin@oft.net", "admin123");
+            User user2= new User("admin2@oft.net", "admin123");
 
-            repo.saveAll(List.of(user1,user2,user3,user4));
+
+            repo.saveAll(List.of(user1,user2));
 
             System.out.println("sample database initialized");
         };

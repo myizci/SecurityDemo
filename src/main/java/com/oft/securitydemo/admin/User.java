@@ -1,4 +1,4 @@
-package com.oft.securitydemo;
+package com.oft.securitydemo.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,12 +22,12 @@ public class User {
     private String email;
     @Column(nullable = false, length = 10)
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
-    public User(String email, String password, Role role) {
+
+
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
-        this.role = role;
+
     }
 }

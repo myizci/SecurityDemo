@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Security Demo Project User Control Panel</title>
+    <title>Welcome to Security Demo Project Customer Control Panel</title>
 </head>
 <body>
 <div align="center">
     <h2>
-        Welcome To Security Demo User Control Panel
+        Welcome To Security Demo Customer Control Panel
     </h2>
     <p>
         Your username is: <b>[[${#request.userPrincipal.principal.username}]]</b>
     </p>
-    <form th:action="@{/user/Logout}" method="post">
+    <form th:action="@{/customer/Logout}" method="post">
         <input type="submit" value="logout" />
     </form>
 </div>
